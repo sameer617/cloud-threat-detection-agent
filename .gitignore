@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.joblib
+*.pt
+data/raw/*
+!data/raw/.gitkeep
+outputs/*
+!outputs/.gitkeep

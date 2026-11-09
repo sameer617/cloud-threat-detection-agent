@@ -1,0 +1,1252 @@
+[
+  {
+    "case_id": "P01",
+    "attack_pattern": "Admin policy attached to user",
+    "expected_technique": "T1098.003",
+    "expected_tactic": "Privilege Escalation",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-1"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetUser",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-1"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "AttachUserPolicy",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-1"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P02",
+    "attack_pattern": "Role admin policy attachment",
+    "expected_technique": "T1098.003",
+    "expected_tactic": "Privilege Escalation",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListRoles",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-2"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "AttachRolePolicy",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-2"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetRole",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-2"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P03",
+    "attack_pattern": "Inline user policy grant",
+    "expected_technique": "T1098.003",
+    "expected_tactic": "Privilege Escalation",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetUser",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-3"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "PutUserPolicy",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-3"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetUserPolicy",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-3"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P04",
+    "attack_pattern": "Inline role policy change",
+    "expected_technique": "T1098.003",
+    "expected_tactic": "Privilege Escalation",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListRolePolicies",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-4"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "PutRolePolicy",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-4"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetRolePolicy",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-4"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P05",
+    "attack_pattern": "Policy version made default",
+    "expected_technique": "T1098.003",
+    "expected_tactic": "Privilege Escalation",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListPolicyVersions",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-5"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "CreatePolicyVersion",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-5"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "SetDefaultPolicyVersion",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-5"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P06",
+    "attack_pattern": "New user access key",
+    "expected_technique": "T1098.001",
+    "expected_tactic": "Persistence",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetUser",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-6"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "CreateAccessKey",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-6"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "ListAccessKeys",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-6"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P07",
+    "attack_pattern": "New login profile",
+    "expected_technique": "T1098.001",
+    "expected_tactic": "Persistence",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetUser",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-7"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "CreateLoginProfile",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-7"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetLoginProfile",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-7"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P08",
+    "attack_pattern": "Access key rotated",
+    "expected_technique": "T1098.001",
+    "expected_tactic": "Persistence",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListAccessKeys",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-8"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "CreateAccessKey",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-8"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "UpdateAccessKey",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-8"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P09",
+    "attack_pattern": "Login profile changed",
+    "expected_technique": "T1098.001",
+    "expected_tactic": "Persistence",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetLoginProfile",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-9"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "UpdateLoginProfile",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-9"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetLoginProfile",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-9"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P10",
+    "attack_pattern": "Credential added after enumeration",
+    "expected_technique": "T1098.001",
+    "expected_tactic": "Persistence",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-10"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetUser",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-10"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "CreateAccessKey",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-10"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P11",
+    "attack_pattern": "CloudTrail logging stopped",
+    "expected_technique": "T1685.002",
+    "expected_tactic": "Defense Impairment",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "DescribeTrails",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-11"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "StopLogging",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-11"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetTrailStatus",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-11"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P12",
+    "attack_pattern": "CloudTrail trail deleted",
+    "expected_technique": "T1685.002",
+    "expected_tactic": "Defense Impairment",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListTrails",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-12"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "DeleteTrail",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-12"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "ListTrails",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-12"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P13",
+    "attack_pattern": "CloudTrail settings modified",
+    "expected_technique": "T1685.002",
+    "expected_tactic": "Defense Impairment",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetTrail",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-13"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "UpdateTrail",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-13"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetTrail",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-13"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P14",
+    "attack_pattern": "CloudTrail selectors tampered",
+    "expected_technique": "T1685.002",
+    "expected_tactic": "Defense Impairment",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetEventSelectors",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-14"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "PutEventSelectors",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-14"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetEventSelectors",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-14"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P15",
+    "attack_pattern": "Recon before disabling audit",
+    "expected_technique": "T1685.002",
+    "expected_tactic": "Defense Impairment",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListTrails",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-15"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "DescribeTrails",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-15"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "StopLogging",
+        "eventSource": "cloudtrail.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-15"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P16",
+    "attack_pattern": "IAM user enumeration",
+    "expected_technique": "T1087.004",
+    "expected_tactic": "Discovery",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-16"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-16"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-16"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P17",
+    "attack_pattern": "IAM role enumeration",
+    "expected_technique": "T1087.004",
+    "expected_tactic": "Discovery",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-17"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListRoles",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-17"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "ListRoles",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-17"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P18",
+    "attack_pattern": "Policy catalog enumeration",
+    "expected_technique": "T1087.004",
+    "expected_tactic": "Discovery",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-18"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListPolicies",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-18"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "ListAttachedUserPolicies",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-18"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P19",
+    "attack_pattern": "Account authorization listing",
+    "expected_technique": "T1087.004",
+    "expected_tactic": "Discovery",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetAccountAuthorizationDetails",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-19"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-19"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P20",
+    "attack_pattern": "Multi-step account enumeration",
+    "expected_technique": "T1087.004",
+    "expected_tactic": "Discovery",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListUsers",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-20"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListRoles",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-20"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetUser",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-20"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetRole",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-20"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P21",
+    "attack_pattern": "Unusual role session",
+    "expected_technique": "T1078.004",
+    "expected_tactic": "Initial Access",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-21"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "AssumeRole",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-21"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-21"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P22",
+    "attack_pattern": "New cloud role session",
+    "expected_technique": "T1078.004",
+    "expected_tactic": "Initial Access",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListRoles",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-22"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "AssumeRole",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-22"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-22"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P23",
+    "attack_pattern": "Cross-account role chain pattern",
+    "expected_technique": "T1078.004",
+    "expected_tactic": "Initial Access",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "AssumeRole",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-23"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-23"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "AssumeRole",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-23"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P24",
+    "attack_pattern": "Federation token request",
+    "expected_technique": "T1078.004",
+    "expected_tactic": "Initial Access",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-24"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetFederationToken",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-24"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-24"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P25",
+    "attack_pattern": "Role session following exploration",
+    "expected_technique": "T1078.004",
+    "expected_tactic": "Initial Access",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListRoles",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-25"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetRole",
+        "eventSource": "iam.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-25"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "AssumeRole",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-25"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetCallerIdentity",
+        "eventSource": "sts.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-25"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P26",
+    "attack_pattern": "S3 bucket object collection",
+    "expected_technique": "T1530",
+    "expected_tactic": "Collection",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListBuckets",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-26"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListObjectsV2",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-26"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-26"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-26"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P27",
+    "attack_pattern": "Repeated sensitive object reads",
+    "expected_technique": "T1530",
+    "expected_tactic": "Collection",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-27"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-27"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-27"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-27"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P28",
+    "attack_pattern": "Cross-bucket object retrieval",
+    "expected_technique": "T1530",
+    "expected_tactic": "Collection",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListBuckets",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-28"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-28"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "ListObjectsV2",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-28"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-28"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P29",
+    "attack_pattern": "S3 enumeration then download",
+    "expected_technique": "T1530",
+    "expected_tactic": "Collection",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListObjects",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-29"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "ListObjectsV2",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-29"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-29"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-29"
+        }
+      }
+    ]
+  },
+  {
+    "case_id": "P30",
+    "attack_pattern": "High-volume cloud object access",
+    "expected_technique": "T1530",
+    "expected_tactic": "Collection",
+    "events": [
+      {
+        "eventTime": "2026-10-01T10:00:00Z",
+        "eventName": "ListObjectsV2",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:01:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:02:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:03:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:04:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:05:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:06:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:07:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      },
+      {
+        "eventTime": "2026-10-01T10:08:00Z",
+        "eventName": "GetObject",
+        "eventSource": "s3.amazonaws.com",
+        "sourceIPAddress": "198.51.100.25",
+        "userIdentity": {
+          "type": "IAMUser",
+          "arn": "arn:aws:iam::123456789012:user/demo-30"
+        }
+      }
+    ]
+  }
+]
